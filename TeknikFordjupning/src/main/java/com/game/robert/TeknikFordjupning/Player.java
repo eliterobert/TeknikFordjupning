@@ -2,6 +2,7 @@ package com.game.robert.TeknikFordjupning;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 public class Player {
 
@@ -10,17 +11,33 @@ public class Player {
 	private int damage;
 	private Image image;
 	private ImageView imageView;
+	private Pane layer;
 
 	Player() {
 		super();
 	}
 
-	Player(String _name, int _HP, int _damage, Image _image) {
+	Player(Pane _layer, String _name, int _HP, int _damage, Image _image) {
 		this.name = _name;
 		this.hp = _HP;
 		this.damage = _damage;
 		this.image = _image;
 		this.imageView = new ImageView(_image);
+		this.layer = _layer;
+		this.imageView.relocate(200, 200);
+		addToLayer();
+	}
+
+	public void addToLayer() {
+		this.layer.getChildren().add(this.imageView);
+	}
+
+	public Pane getLayer() {
+		return layer;
+	}
+
+	public void setLayer(Pane layer) {
+		this.layer = layer;
 	}
 
 	public String getName() {

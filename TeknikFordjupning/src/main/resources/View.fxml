@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="800.0" maxWidth="800.0" minHeight="800.0" minWidth="800.0" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.robert.TeknikFordjupning.Controller">
+<AnchorPane fx:id="anchorPane" maxHeight="800.0" maxWidth="800.0" minHeight="800.0" minWidth="800.0" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.game.robert.TeknikFordjupning.Controller">
 	<children>
 		<Button fx:id="startButton" layoutX="374.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Start" />
 		<Label fx:id="startPageLabel" layoutX="238.0" layoutY="100.0" text="Maze Game">

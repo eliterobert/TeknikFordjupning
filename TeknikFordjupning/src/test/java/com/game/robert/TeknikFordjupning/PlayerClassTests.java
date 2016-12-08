@@ -10,7 +10,6 @@ import org.testfx.framework.junit.ApplicationTest;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-
 @RunWith(JfxTestRunner.class)
 public class PlayerClassTests {
 
@@ -32,9 +31,9 @@ public class PlayerClassTests {
 		assertEquals(PLAYER_HP, player.getHP());
 		assertEquals(PLAYER_DAMAGE, player.getDamae());
 	}
-	
+
 	@Test
-	public void testPlayerImagePath(){
+	public void testPlayerImagePath() {
 		Player player = new Player();
 		String path = getClass().getResource("/game_player.png").toString();
 		Image image = new Image(path);
