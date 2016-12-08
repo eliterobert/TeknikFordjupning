@@ -2,6 +2,7 @@ package com.game.robert.TeknikFordjupning;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 import org.junit.After;
@@ -16,6 +17,7 @@ import org.testfx.util.WaitForAsyncUtils;
 
 import static org.testfx.matcher.base.NodeMatchers.*;
 
+import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,6 +37,7 @@ public class MazeGameTest extends ApplicationTest {
 	final String LABEL_ON_STARTPAGE = "#startPageLabel";
 	final String START_BUTTON = "#startButton";
 	Stage stageP;
+	Controller cont;
 
 	@Before
 	public void setUp() throws Exception {
@@ -45,49 +48,55 @@ public class MazeGameTest extends ApplicationTest {
 	public void start(Stage stage) throws Exception {
 		stage.show();
 		this.stageP = stage;
+		this.cont = new Controller();
 	}
 
 	@Test
-	public void stageShouldNotBeNull() {
+	public void testStageShouldNotBeNull() {
 		assertNotNull(stageP);
 	}
 
 	@Test
-	public void startSceneShouldNotBeRezisizeabe() {
+	public void testSceneShouldNotBeRezisizeabe() {
 		assertFalse(stageP.isResizable());
 	}
 
 	@Test
-	public void stageShoudBe800Times800() {
+	public void testThatStageWidthAndHeightIs800Times800() {
 		assertEquals(800.00, stageP.getHeight(), DELTA);
 		assertEquals(800.00, stageP.getWidth(), DELTA);
 	}
 
 	@Test
-	public void checkIfGameLabelIsVisibleAndWithCorrectName() {
+	public void testIfGameLabelIsVisibleAndWithCorrectName() {
 		assertTrue(find(LABEL_ON_STARTPAGE).isVisible());
 		verifyThat(LABEL_ON_STARTPAGE, hasText("Maze Game"));
 	}
 
 	@Test
-	public void verifyThatButtonIsSetOnSceen() {
+	public void testThatButtonIsSetOnSceen() {
 		verifyThat(START_BUTTON, hasText("Start"));
 	}
 
 	@Test(expected = FxRobotException.class)
-	public void clickOnElementThatDoesntExsist() {
+	public void testClickOnElementThatDoesntExsist() {
 		clickOn("#falseElement");
 	}
 
 	@Test
-	public void testThatStageIsShowing() {
+	public void testButtonEvent_StageShouldNotBePrimaryStage_ShouldBeGameScene()
+			throws IOException, InterruptedException {
 		clickOn("#startButton");
+		WaitForAsyncUtils.waitForFxEvents();
+		assertNotEquals("PrimaryStageApplication", stageP.getTitle());
+		assertEquals("Game Scene", stageP.getTitle());
+
 	}
 
-	@Test
-	public void tearDown() {
-
-	}
+	// @Test
+	// public void tearDown() {
+	//
+	// }
 
 	@After
 	public void afterEachTest() throws Exception {
