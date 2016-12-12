@@ -18,6 +18,8 @@ public class MazeGame extends Application {
 		launch(args);
 	}
 
+	public static Scene _scene;
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		URL location = getClass().getClassLoader().getResource("View.fxml");
@@ -27,6 +29,7 @@ public class MazeGame extends Application {
 			// test
 			root = loader.load();
 			Scene scene = new Scene(root);
+			_scene = scene;
 			primaryStage.setMinHeight(800);
 			primaryStage.setMinWidth(800);
 			primaryStage.setMaxHeight(800);

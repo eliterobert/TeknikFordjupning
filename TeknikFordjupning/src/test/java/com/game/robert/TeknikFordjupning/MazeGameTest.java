@@ -17,14 +17,19 @@ import org.testfx.util.WaitForAsyncUtils;
 
 import static org.testfx.matcher.base.NodeMatchers.*;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import static org.testfx.api.FxAssert.*;
 
@@ -91,6 +96,24 @@ public class MazeGameTest extends ApplicationTest {
 		assertNotEquals("PrimaryStageApplication", stageP.getTitle());
 		assertEquals("Game Scene", stageP.getTitle());
 
+	}
+
+	@Test
+	public void testIfPlayerIsAddedOnGameSceneWhenPressedStartButton() {
+		clickOn("#startButton");
+		WaitForAsyncUtils.waitForFxEvents();
+		// TODO KOLLA OM SPELAREN HAMNAR PÅ SPELSIDAN
+		AnchorPane anchor = find("#anchorPane");
+		Player player = new Player();
+		player.setImage(new Image(getClass().getResource("/game_player.png").toString()));
+		ObservableList<Node> obsList = FXCollections.observableArrayList();
+		obsList.addAll(anchor.getChildren());
+		for (Node node : obsList) {
+			if (node instanceof ImageView) {
+				assertEquals(player.getImage().getHeight(), ((ImageView) node).getImage().getHeight(), DELTA);
+				assertEquals(player.getImage().getWidth(), ((ImageView) node).getImage().getWidth(), DELTA);
+			}
+		}
 	}
 
 	// @Test

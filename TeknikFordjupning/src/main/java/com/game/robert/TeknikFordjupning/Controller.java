@@ -33,6 +33,7 @@ public class Controller implements Initializable {
 		Scene home_page_scene = new Scene(home_page_parent);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(home_page_scene);
+		MazeGame._scene = home_page_scene;
 		app_stage.setTitle("Game Scene");
 		app_stage.show();
 
